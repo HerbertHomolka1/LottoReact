@@ -1,6 +1,8 @@
 # Intro
 
 This is my lotto simulator written in react. 
+![image](https://github.com/HerbertHomolka1/LottoReact/assets/110294810/e5f8cc31-1c27-4a90-bf00-9706498e6b0c)
+
 
 ## Components
 
