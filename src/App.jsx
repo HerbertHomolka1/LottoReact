@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import Card from "./components/Card";
-import markThatButton from "./utils./markTjatButton.js";
-import startGame from "./utils./startGame";
+import markThatButton from "./utils/markTjatButton.js";
+import startGame from "./utils/startGame";
 
 function App() {
 
@@ -26,7 +26,7 @@ function App() {
       ButtonType="playButton"
       isMarked={false}
       onclick={() =>
-        startGame(numOfButtons,howManyButtonsShouldBePicked)
+        startGame(numOfChecked,howManyButtonsShouldBePicked)
       }
     />
   );
