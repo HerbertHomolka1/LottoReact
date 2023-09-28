@@ -4,7 +4,6 @@ This is my lotto simulator written in react.
 ![image](https://github.com/HerbertHomolka1/LottoReact/assets/110294810/d74591db-d0c9-4f67-a267-8a33f5e153f9)
 
 
-
 ## Components
 
 The application consists of the following main components:
