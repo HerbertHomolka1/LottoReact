@@ -1,43 +1,56 @@
-import { useState } from "react";
 import "./App.css";
-import Card from "./components/Card";
-import markThatButton from "./utils/markTjatButton.js";
-import startGame from "./utils/startGame";
+
+import { useState } from "react";
+
+import { Flex } from "./components/Flex";
+import { LotteryNumber } from "./components/LotteryNumber";
+
+const lotteryNumbersAmount = 45;
+const selectableLotteryNumbers = 6;
 
 function App() {
+  const [selectedNumbers, setSelectedNumbers] = useState([]);
 
-  const numOfButtons = 45;
-  const howManyButtonsShouldBePicked = 6;
-
-  const [numOfChecked, setNumOfChecked] = useState(0);
-
-  let myCards = Array.from({ length: numOfButtons }, (_, i) => (
-    <Card
-      key={i}
-      id={i + 1}
-      isMarked={false}
-      onclick={(isChecked,setIsChecked) => // it only works when i pass isChecked,setIsChecked but not howManyButtonsShouldBePicked, I dont understand why
-        markThatButton(isChecked, setIsChecked, numOfChecked, setNumOfChecked, howManyButtonsShouldBePicked)}
-    />
-  ));
-
-  const playLottoCard = (
-    <Card
-      ButtonType="playButton"
-      isMarked={false}
-      onclick={() =>
-        startGame(numOfChecked,howManyButtonsShouldBePicked)
-      }
-    />
-  );
+  function handleLotteryNumberClick(number) {
+    if (
+      !selectedNumbers.includes(number) &&
+      selectedNumbers.length < selectableLotteryNumbers
+    ) {
+      setSelectedNumbers((prevSelectedNumbers) => [
+        ...prevSelectedNumbers,
+        number,
+      ]);
+    }
+  }
 
   return (
-    <div>
-      <div className="flex-center">
-        Picked {numOfChecked} of {howManyButtonsShouldBePicked} numbers.
-      </div>
-      <div className="flex-center">{myCards}</div>
-      {playLottoCard}
+    <div className="app">
+      <Flex flexDirection="column" gap="1rem">
+        <p>
+          Picked {selectedNumbers.length} of {selectableLotteryNumbers} numbers
+        </p>
+
+        <Flex flexWrap="wrap" gap="0.25rem">
+          {Array.from({ length: lotteryNumbersAmount }, (_, index) => (
+            <LotteryNumber
+              disabled={selectedNumbers.includes(index)}
+              key={index}
+              value={index}
+              onClick={() => handleLotteryNumberClick(index)}
+            />
+          ))}
+        </Flex>
+
+        <p>Selected numbers: {selectedNumbers.join(", ")}</p>
+
+        <button
+          disabled={selectedNumbers.length !== selectableLotteryNumbers}
+          style={{ padding: "1rem" }}
+          onClick={() => console.log("PLAY")}
+        >
+          Play
+        </button>
+      </Flex>
     </div>
   );
 }
