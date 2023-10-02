@@ -1,3 +1,7 @@
 .app {
   padding: 10%;
 }
+
+button {
+  width: 100%;
+}

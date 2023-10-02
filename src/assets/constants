@@ -1,0 +1,8 @@
+const data = {
+    lotteryNumbersAmount : 45,
+    selectableLotteryNumbers : 6,
+    ticketCost : 2,
+    moneyWon : [0,0,0,5,100,5*10**4,10**6],
+}
+
+export default data;
